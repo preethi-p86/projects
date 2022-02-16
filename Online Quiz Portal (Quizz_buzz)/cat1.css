@@ -1,0 +1,35 @@
+.Forms{
+	margin: 0px;
+	width: 450px;	
+}
+.Forms1{
+	z-index: 1;
+	background: transparent;
+	max-width: 450px;
+	margin: 0 auto 100px;
+	padding: 45px;
+	text-align: center;
+	height: 100%;
+}
+.Forms1 input{
+	font-family: montserrat, sans-serif;
+	padding: 15px;
+	font-size: 20px;
+	width: 100%;
+	outline: 1;
+	margin: 0 0 15px;
+	box-sizing: border-box;
+	border: 5px;
+	background: floralwhite;
+	color: black;
+}
+.Forms1 button{
+	font-family: montserrat, sans-serif;
+	padding: 15px;
+	font-size: 20px;
+	width: 100%;
+	color: black;
+	text-transform: uppercase;
+	background: gold;
+	cursor: pointer;
+}
