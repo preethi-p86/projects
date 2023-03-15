@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+    <head>
+        <title>Login Page</title>
+        <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'pkn/css/style-login.css' %}">
+
+        <style>
+
+    .content_new{
+    /* width: 100%; */
+    /* position: absolute; */
+    top: 800px;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+}
+
+.content_new button{
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #009688;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    position:relative;
+    overflow: hidden;
+}
+
+.content_new span{
+    background: #009688;
+    height: 100%;
+    width: 0%;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition:0.5s;
+}
+
+.content_new button:hover span{
+    width: 100%;
+}
+
+.content_new button:hover{
+    border: none;
+}
+
+.before-bottom{
+    padding-bottom:475px;
+}
+
+
+     </style>
+    </head>
+
+    <body>
+        <div class="banner">
+            <div class="navbar">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'pkn/Images/dpspic5.png' %}" class="logo" alt="Logo" >
+                </a>
+                <h3 style="border:red; border-width:3px; border-style:solid; color:white">HELPLINE: 1091</h3>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'services' %}">About</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href='http://127.0.0.1:8000/#bottom'>Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+            <div id="login-form" class="login-page">
+                <div class="form-box">
+                    <div class="button-box">
+                        <div id="btn"></div>
+                        <button
+                        type="button" onclick="login()" class="toggle-btn">Log In</button>
+                        <button
+                        type="button" onclick="register()" class="toggle-btn">Register</button>
+                    </div>
+
+                    <!-- <form method="POST" onclick ="window.location.href='{% url 'next_page' %}'" id="login" class="input-group-login" action="{% url 'login' %}"> -->
+                        <form method="POST" onsubmit="return verifyPassword()" id="login" class="input-group-login" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <input type="email" name="email_id" id="mail_check" class="input-field" style="color:white" placeholder="Email Id" required>
+                        <input type="password" name="password2" class="input-field" id="pswd" style="color:white" placeholder="Enter Password" required>
+                        <span id = "message1" style="color:red;font-size:11px;"> </span> <br><br>
+                        <input type="checkbox" class="check-box"><span class="new">Remember password</span>
+                        <button type="submit" class="submit-btn">Log in</button>
+                    </form>
+
+                    <form method="POST" onsubmit="return comparePassword()" id="register" class="input-group-register" action="{% url 'insert_data' %}">
+                        {% csrf_token %}
+                        <input type="text" name="fname" class="input-field" placeholder="First Name" required>
+                        <input type="text" name="lname" class="input-field" placeholder="Last Name" required>
+                        <input type="email" name="mail_id" class="input-field" placeholder="Email Id"required>
+                        <input type="password" name="password" class="input-field" id="pass1" placeholder="Enter Password" required>
+                        <input type="password" name="confirm_password" class="input-field" id="pass2" placeholder="Confirm Password" required>
+                        <span id = "message2" style="color:red;font-size:11px;"> </span> <br><br>
+                        <input type="checkbox" class="check-box" required><span class="new">I agree to the terms and conditions</span>
+                        <button type="submit" class="submit-btn">Register</button>
+                    </form>
+                </div>
+            </div>
+
+            <br><br><br><br>
+
+
+            <div class="content_new">
+                <!-- <a href="{% url 'inside_loin' %}">
+                    <button type="button"><span></span>Contact Us</button>
+                </a> -->
+                <a href='http://127.0.0.1:8000/#bottom'>
+                    <button type="button"><span></span>Contact Us</button>
+                </a>
+        </div>
+        
+        
+        <div class="row">
+            <a href="https://www.facebook.com/">
+                <img src="{% static 'pkn/Images/fb-removebg-preview.png' %}" alt="Facebook" style="width:45px;height:45px">
+            </a>
+            <a href="https://www.instagram.com/">
+                <img src="{% static 'pkn/Images/download-removebg-preview.png' %}" alt="Instagram" style="width:70px;height:50px">
+            </a>
+            <a href="https://mail.google.com">
+                <img src="{% static 'pkn/Images/mail1-removebg-preview.png' %}" alt="E-mail" style="width:50px;height:50px">
+            </a>
+            <a href="https://www.linkedin.com/">
+                <img src="{% static 'pkn/Images/l-removebg-preview.png' %}" alt="LinkedIn" style="width:50px;height:50px">
+            </a>
+        </div>
+        
+
+        <script>
+
+        function comparePassword() {
+            var pw1 = document.getElementById("pass1").value;
+            var pw2 = document.getElementById("pass2").value;
+
+            if (pw1 != pw2) {
+                document.getElementById("message2").innerHTML = "Password is incorrect!";
+                return false;
+            }
+            if (pw1.length<8 || pw2.length<8){
+                document.getElementById("message2").innerHTML = "Password must be at least 8 characters long!";
+                return false;
+            }
+            else if (pw1.length>15 || pw2.length>15){
+                document.getElementById("message2").innerHTML = "Password characters length limit is 15!";
+                return false;
+            }
+            else{
+                alert("Successfully registered!");
+            }
+        }
+
+        function verifyPassword() {
+        var pw = document.getElementById("pswd").value;
+        var ma = document.getElementById("mail_check").value;
+        //check empty password field
+        if(pw == "" || ma== "") {
+            document.getElementById("message1").innerHTML = "**Fill the password please!";
+            return false;
+        }
+        
+        //minimum password length validation
+        // if(pw.length < 8) {
+        //     document.getElementById("message1").innerHTML = "**Password length must be atleast 8 characters";
+        //     return false;
+        // }
+
+        // //maximum length of password validation
+        // if(pw.length > 15) {
+        //     document.getElementById("message1").innerHTML = "**Password length must not exceed 15 characters";
+        //     return false;
+        // } else {
+        //     // alert("Login Successful!");
+        //     location.replace("{% url 'inside_loin' %}");
+        //     return True;
+        // }
+        }
+
+
+            var x=document.getElementById('login');
+            var y=document.getElementById('register');
+            var z=document.getElementById('btn');
+
+            function register(){
+                x.style.left='-400px';
+                y.style.left='50px';
+                z.style.left='110px';
+            }
+
+            function login(){
+                x.style.left='50px';
+                y.style.left='450px';
+                z.style.left='0px';
+            }
+        </script>
+
+        <script>
+            var modal = document.getElementById('login-form');
+            window.onclick = function(event)
+            {
+                if (event.target == modal){
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+<!-- <div class="before-bottom"></div> -->
+
+
+            
+    </body>
+
+</html>
