@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+{% load static %}
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<html>
+    <head>
+        <title>PATIENT CHARGES PREDICTION</title>
+        <link rel="stylesheet" href="{% static 'pkn/css/about.css' %}">
+
+        <style>
+
+            .content_new{
+            /* width: 100%; */
+            /* position: absolute; */
+            top: 100px;
+            transform: translateY(-50%);
+            text-align: center;
+            color: #fff;
+        }
+        
+        .content_new button{
+            width: 200px;
+            padding: 15px 0;
+            text-align: center;
+            margin: 20px 10px;
+            border-radius: 25px;
+            font-weight: bold;
+            border: 2px solid #009688;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            position:relative;
+            overflow: hidden;
+        }
+        
+        .content_new span{
+            background: #009688;
+            height: 100%;
+            width: 0%;
+            border-radius: 25px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+            transition:0.5s;
+        }
+        
+        .content_new button:hover span{
+            width: 100%;
+        }
+        
+        .content_new button:hover{
+            border: none;
+        }
+        
+        .before-bottom{
+            padding-bottom:475px;
+        }
+        
+             </style>
+    </head>
+
+    <body>
+        <div class="banner">
+            <div class="navbar">
+                <a href="{% url 'home' %}">
+                <img src="{% static 'pkn/Images/dpspic5.png' %}" class="logo" alt="Logo" >
+                </a>
+                <h3 style="border:red; border-width:3px; border-style:solid;">HELPLINE: 1091</h3>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'services' %}">About</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href='#bottom'>Contact</a></li>
+                </ul>
+            </div>
+
+        <!-- <br><br><br><br><br><br><br><br><br><br> -->
+
+        <div class="slideshow-container">
+        
+        <div class="mySlides fade">
+        <img src="{% static 'pkn/Images/image1.jpg' %}" style="width:75%">
+        <!-- <div class="text">Let's join for a better living!</div> -->
+        </div>
+
+        <div class="mySlides fade">
+        <img src="{% static 'pkn/Images/image3.jpg' %}" style="width:75%">
+        <!-- <div class="text">Stay healthy, stay safely!</div> -->
+        </div>
+
+        <div class="mySlides fade">
+        <img src="{% static 'pkn/Images/image4.jpg' %}" style="width:75%">
+        <!-- <div class="text">It's time to make the world beautiful!</div> -->
+        </div>
+
+        </div>
+        <br>
+
+        <div style="text-align:center">
+        <span class="dot"></span> 
+        <span class="dot"></span> 
+        <span class="dot"></span> 
+        </div>
+
+        <div class="content">
+        <br><br>
+        <h1>Welcome to <span style="color: goldenrod;">PKN HOSPITALS</span></h1><br>
+        <p>PKN Hospitals provides total health care to its patients, with the highest levels of skill,professionalism,<br>
+            and ethical practice, leading to their effective care and treatment at affordable costs.<br>PKN Hospitals facilitates
+            medical education and research<br>and is committed to continuous quality improvement.
+            </p>
+        </div>
+
+            <br><br>
+            <div class="left-right">
+
+                <div class="column">
+                    <h3>Our Vision</h3><br>
+                    <p>To bring healthcare of International standards to this region, to evolve as a premier hospital in the country and to TOUCH the lives of the people we serve through excellence in clinical care, quality and commitment.</p>
+                </div>
+
+                <div class="column">
+                <h3>
+                    Our Mission
+                </h3><br>
+                <ul style="list-style-type: circle; ">
+                    <li style="padding-bottom:15px;">To be a dynamic, growth oriented organization where individuals synergize to meet the challenges and to achieve excellence in all spheres.</li> 
+                    <li style="padding-bottom:15px;">To be a teaching hospital of distinction, setting the highest standards in patient care, medical education, training and research.</li>
+                    <li style="padding-bottom:15px;">To provide quality health care to the patients, conforming to scientific and ethical standards.</li>
+                    <li style="padding-bottom:15px;">To provide an ideal environment for medical education and research.</li>
+                    <li style="padding-bottom:15px;">To constantly upgrade the quality of medical practice and education in the hospital.</li>
+                </ul>
+                </div>  
+                
+        </div>
+
+    </div>
+
+    
+        <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+        </script>
+
+<img src="{% static 'pkn/Images/dpspic7.jpg' %}" alt="Vision and Values" style="display: block;margin-left: auto;margin-right: auto;width: 50%;padding-top:50px;">
+<br><br>
+<img src="{% static 'pkn/Images/dietpic.jpg' %}" alt="Balanced diet" style="display: block;margin-left: auto;margin-right: auto;width: 50%;padding-top:50px;">
+<br><br>
+<img src="{% static 'pkn/Images/pregnancy.jpg' %}" alt="Pregnancy diet plan" style="display: block;margin-left: auto;margin-right: auto;width: 50%">
+
+<br><br><br><br>
+<div class="content_new">
+    <a href='http://127.0.0.1:8000/#bottom'>
+        <button type="button"><span></span>Contact Us</button>
+    </a>
+</div>
+
+    <div class="row">
+        <a href="https://www.facebook.com/">
+            <img src="{% static 'pkn/Images/fb-removebg-preview.png' %}" alt="Facebook" style="width:45px;height:45px">
+        </a>
+        <a href="https://www.instagram.com/">
+            <img src="{% static 'pkn/Images/download-removebg-preview.png' %}" alt="Instagram" style="width:70px;height:50px">
+        </a>
+        <a href="https://mail.google.com">
+            <img src="{% static 'pkn/Images/mail1-removebg-preview.png' %}" alt="E-mail" style="width:50px;height:50px">
+        </a>
+        <a href="https://www.linkedin.com/">
+            <img src="{% static 'pkn/Images/l-removebg-preview.png' %}" alt="LinkedIn" style="width:50px;height:50px">
+        </a>
+    </div>
+
+</div>
+        
+    </body>
+</html>
