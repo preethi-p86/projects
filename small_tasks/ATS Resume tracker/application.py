@@ -1,3 +1,6 @@
+# another file called .env
+# has GOOGLE_API_KEY = ""
+
 from dotenv import load_dotenv
 load_dotenv()
 
